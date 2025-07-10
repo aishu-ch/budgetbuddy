@@ -13,4 +13,4 @@ def root():
         return {"message" : "Connected to MySQL successfully!"}
     except Exception as e:
         return {"error": str(e)}
-    
+     

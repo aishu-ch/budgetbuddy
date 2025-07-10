@@ -2,7 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 import os
+from sqlalchemy.ext.declarative import declarative_base
 
+#load environment variables
 load_dotenv()
 
 DB_USER = os.getenv("DB_USER")
@@ -13,9 +15,14 @@ DB_NAME = os.getenv("DB_NAME")
 
 DATABASE_URL = (f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}")
 
+#create sqlalchemy engine
 engine = create_engine(DATABASE_URL)
 
+#create session
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+#create base
+Base = declarative_base()
 
 # Dependency (for FastAPI endpoints, later)
 def get_db():
