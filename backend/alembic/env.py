@@ -4,11 +4,11 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
 from alembic import context
 from db.database import DATABASE_URL
+from db import models
+from db.database import Base, DATABASE_URL  # adjust to match your structure
 
 # Add your backend folder to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from db.database import Base, DATABASE_URL  # adjust to match your structure
 
 config = context.config
 
